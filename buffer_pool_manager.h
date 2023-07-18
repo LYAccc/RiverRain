@@ -10,7 +10,7 @@ namespace riverrain{
                 Block *blocks_;
                 std::unordered_map<block_id_t, frame_id_t> block_table_;
                 std::list<frame_id_t> free_list_;
-                const size_t pool_size;
+                const size_t pool_size_;
                 DiskManager *disk_manager_;
 
     };
