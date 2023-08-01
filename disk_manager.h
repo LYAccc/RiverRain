@@ -14,6 +14,7 @@
 #include <errno.h>
 #include <string.h>
 #include <iostream>
+#include <lru_k_replacer.h>
 
 namespace riverrain{
 class DiskManager{
@@ -33,7 +34,12 @@ class DiskManager{
         auto GetFileSize(const std::string &file_name) -> int;
         int fd_;
         const char * path_name_;
-        
+        const size_t disk_pool_size;
+        // to support buffer function
+        std::unique_ptr<LRUKReplacer> replacer_;
+        std::list<frame_id_t> free_list_;
+        std::unordered_map<block_id_t, frame_id_t> block_table_;
+
 
 };
 }

@@ -3,7 +3,7 @@
 namespace riverrain{
 
 
-DiskManager::DiskManager(const char * pname) : path_name_{pname} {
+DiskManager::DiskManager(const char * pname) : path_name_(pname), disk_pool_size(DISK_SIZE/BLOCK_SIZE){
             fd_ = open(path_name_, O_RDWR | O_DIRECT | O_CREAT, S_IRWXU);
 
             int err = truncate(path_name_,DISK_SIZE);

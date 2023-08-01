@@ -21,6 +21,24 @@
         "new": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "mutex": "cpp",
+        "functional": "cpp",
+        "memory": "cpp",
+        "array": "cpp",
+        "chrono": "cpp",
+        "cmath": "cpp",
+        "ctime": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "ratio": "cpp",
+        "tuple": "cpp",
+        "fstream": "cpp",
+        "numeric": "cpp",
+        "sstream": "cpp",
+        "utility": "cpp"
     }
 }
