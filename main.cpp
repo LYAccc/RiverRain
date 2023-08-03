@@ -1,7 +1,8 @@
 
 
 #include "disk_manager.h" 
-#include "buffer_pool_manager.h"
+#include "memory_manager.h"
+#include "object_block.h"
 #include <iostream>
     // disk_manager test
     // int main(){
@@ -31,8 +32,14 @@ using namespace riverrain;
 int main(){
         DiskManager dm("test.txt");
         
-        BufferPoolManager bf(3 * BLOCK_SIZE, &dm);
-        std::cout << bf.blocks_[1].a << std::endl;
-        return 1;
+        MemoryManager bf(3 * BLOCK_SIZE, &dm);
+        
+        ObjectBlock r;
+        std::cout << &r << std::endl;
+        char  a = 'f';
+        char * p = &a;
+        p[1];
+        
+
         // void * ptr = aligned_alloc(1024, 1024 * sizeof(int));
 }

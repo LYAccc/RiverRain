@@ -12,15 +12,15 @@ namespace riverrain{
     }
      MemoryManager::~ MemoryManager(){
              for(int i = 0; i < mem_pool_size_;++i){
-                blocks_[i].~Block();
+                blocks_[i].~RawBlock();
              }
              
              free(blocks_);           
     }
 
-    auto  MemoryManager::allocate(size_t pz) -> Block *{
-         void * raw_ptr = aligned_alloc(1024, sizeof(Block) * pz);
-                                 auto obj_ptr = new(raw_ptr) Block[pz];
+    auto  MemoryManager::allocate(size_t pz) -> RawBlock *{
+         void * raw_ptr = aligned_alloc(1024, BLOCK_SIZE * pz);
+                                 auto obj_ptr = new(raw_ptr) RawBlock[pz];
                                  return obj_ptr;
 
     }
@@ -37,7 +37,7 @@ namespace riverrain{
 
     }
 
-    auto  MemoryManager::FetchBlock(block_id_t b_id) -> Block *{
+    auto  MemoryManager::FetchBlock(block_id_t b_id) -> RawBlock *{
                       
                         const std::lock_guard<std::mutex> lock(latch_);
                         latch_.lock();
@@ -60,7 +60,7 @@ namespace riverrain{
                         }
 
                         (*replacer_).Evict(&avaliable_frame);
-                        Block * old_block = &blocks_[avaliable_frame];
+                        RawBlock * old_block = &blocks_[avaliable_frame];
                         if(old_block->is_dirty_){
                                 FlushBlock(old_block->block_id_);
                         }

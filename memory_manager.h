@@ -2,7 +2,8 @@
 #define HEADER_BF
 
 #include "disk_manager.h"
-#include "block.h"
+#include "raw_block.h"
+#include "config.h"
 #include "lru_k_replacer.h"
 #include <unordered_map>
 #include <list>
@@ -15,8 +16,8 @@ namespace riverrain{
             public:
                 MemoryManager(size_t pool_size_bytes, DiskManager * disk_manager);
                ~ MemoryManager();
-               Block *blocks_;
-               auto FetchBlock(block_id_t b_id) -> Block *;
+               RawBlock *blocks_;
+               auto FetchBlock(block_id_t b_id) -> RawBlock *;
                auto FlushBlock(block_id_t b_id) -> bool; 
                private:
                 
@@ -27,7 +28,7 @@ namespace riverrain{
                 std::mutex latch_;
                 std::unique_ptr<LRUKReplacer> replacer_;
                 // this is for memory alignment req for direc io
-                Block* allocate(size_t pz);
+                RawBlock* allocate(size_t pz);
 
 
     };

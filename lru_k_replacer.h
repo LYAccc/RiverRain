@@ -1,3 +1,7 @@
+#ifndef LRU_K_REPLACER_H
+#define LRU_K_REPLACER_H
+
+
 #include "config.h"
 #include <list>
 #include <unordered_map>
@@ -136,3 +140,6 @@ class LRUKReplacer {
   // [[maybe_unused]] std::mutex latch_;
 };
 }
+
+
+#endif

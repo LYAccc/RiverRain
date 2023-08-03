@@ -10,7 +10,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "disk_manager.cpp",
-                "buffer_pool_manager.cpp",
+                "memory_manager.cpp",
+                "lru_k_replacer.cpp",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"

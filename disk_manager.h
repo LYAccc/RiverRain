@@ -14,7 +14,8 @@
 #include <errno.h>
 #include <string.h>
 #include <iostream>
-#include <lru_k_replacer.h>
+#include "lru_k_replacer.h"
+#include <memory>
 
 namespace riverrain{
 class DiskManager{
