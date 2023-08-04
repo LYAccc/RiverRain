@@ -12,7 +12,7 @@ namespace riverrain{
                     // return std::make_pair<char *, size_t>(nullptr,0);
                 }
                 size_t offset = this->offset_map_[index];
-                const char * end_of_block = reinterpret_cast<const char *>(this) + (OBJECT_BLOCK_SIZE + OBJECT_BLOCK_HEADER_SIZE);
+                const char * end_of_block = reinterpret_cast<const char *>(this) + (OBJECT_BLOCK_SIZE);
                 size_t len = 0;
                 if(index == 0){
                       len = offset_map_[index];

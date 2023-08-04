@@ -4,7 +4,7 @@
 // to do initilize a block 
 
 namespace riverrain{
-      MemoryManager:: MemoryManager(size_t pool_size_bytes, DiskManager * disk_manager): mem_pool_size_(pool_size_bytes/BLOCK_SIZE) {
+      MemoryManager:: MemoryManager(size_t pool_size_bytes, DiskManager * disk_manager): mem_pool_size_(pool_size_bytes/RAW_BLOCK_SIZE) {
                             blocks_ = allocate(mem_pool_size_);
                             for (size_t i = 0; i < mem_pool_size_; ++i) {
                                     free_list_.emplace_back(static_cast<int>(i));
@@ -19,7 +19,7 @@ namespace riverrain{
     }
 
     auto  MemoryManager::allocate(size_t pz) -> RawBlock *{
-         void * raw_ptr = aligned_alloc(1024, BLOCK_SIZE * pz);
+         void * raw_ptr = aligned_alloc(1024, RAW_BLOCK_SIZE * pz);
                                  auto obj_ptr = new(raw_ptr) RawBlock[pz];
                                  return obj_ptr;
 
@@ -40,7 +40,6 @@ namespace riverrain{
     auto  MemoryManager::FetchBlock(block_id_t b_id) -> RawBlock *{
                       
                         const std::lock_guard<std::mutex> lock(latch_);
-                        latch_.lock();
                         auto ite = this->block_table_.find(b_id);
                         if(ite != block_table_.end()){
                                 auto f_id = (*ite).second;

@@ -4,6 +4,7 @@
 #include <utility>
 #include <stddef.h>
 #include <stdexcept>
+#include "raw_block.h"
 /**
  * Store n indexed keys and n+1 child pointers (page_id) within internal page.
  * Pointer PAGE_ID(i) points to a subtree in which all keys K satisfy:
@@ -23,8 +24,12 @@
 
 namespace riverrain{
 
+#define OBJECT_BLOCK_SIZE  (RAW_BLOCK_SIZE - RAW_BLOCK_HEADER_SIZE)
+
 #define OBJECT_BLOCK_HEADER_SIZE 4
-#define OBJECT_BLOCK_SIZE  (BLOCK_SIZE - BLOCK_META_SIZE - OBJECT_BLOCK_HEADER_SIZE)
+
+
+
 
     class ObjectBlock{
 
