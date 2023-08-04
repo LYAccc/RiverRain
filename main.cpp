@@ -47,4 +47,5 @@ int main(){
         
 
         // void * ptr = aligned_alloc(1024, 1024 * sizeof(int));
+	// for test
 }
