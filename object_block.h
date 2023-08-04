@@ -24,7 +24,7 @@
 namespace riverrain{
 
 #define OBJECT_BLOCK_HEADER_SIZE 8
-#define OBJECT_BLOCK_SIZE = BLOCK_SIZE - BLOCK_META_SIZE - 8
+#define OBJECT_BLOCK_SIZE  (BLOCK_SIZE - BLOCK_META_SIZE - OBJECT_BLOCK_HEADER_SIZE)
 
     class ObjectBlock{
 
@@ -34,12 +34,16 @@ namespace riverrain{
     ~ObjectBlock(){};
     auto ContentAt(int index) const -> std::pair<char *, int>;
     auto GetRemainingSize() const -> int;
-    
-    private:
-         int ptr_end_;
+    auto Initial(){
+            
+    }
+    // private:
          int object_nums_;
+         // I use "this" which points the start address of the object block, plus the size of the object block to get 
+         // the end address
          int offset_map_[0];
-         char * ptr_data_start_ = &(reinterpret_cast<char *>(this)[OBJECT_BLOCK_SIZE]);
+         
+         
          
     };
 }

@@ -34,11 +34,14 @@ int main(){
         
         MemoryManager bf(3 * BLOCK_SIZE, &dm);
         
-        ObjectBlock r;
-        std::cout << &r << std::endl;
-        char  a = 'f';
-        char * p = &a;
-        p[1];
+        
+        void * raw = malloc(16);
+        ObjectBlock * r = reinterpret_cast<ObjectBlock *> (raw);
+        r->Initial();
+
+        std::cout << (void *) r << std::endl;
+        std::cout << (void *)(r->ptr_end) << std::endl;
+        ;
         
 
         // void * ptr = aligned_alloc(1024, 1024 * sizeof(int));
