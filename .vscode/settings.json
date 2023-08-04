@@ -39,6 +39,17 @@
         "fstream": "cpp",
         "numeric": "cpp",
         "sstream": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "condition_variable": "cpp",
+        "cstddef": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "thread": "cpp"
     }
 }

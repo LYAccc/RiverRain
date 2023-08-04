@@ -2,8 +2,8 @@
 #define OBJECT_BLOCK_BF
 #include "config.h"
 #include <utility>
-
-
+#include <stddef.h>
+#include <stdexcept>
 /**
  * Store n indexed keys and n+1 child pointers (page_id) within internal page.
  * Pointer PAGE_ID(i) points to a subtree in which all keys K satisfy:
@@ -23,7 +23,7 @@
 
 namespace riverrain{
 
-#define OBJECT_BLOCK_HEADER_SIZE 8
+#define OBJECT_BLOCK_HEADER_SIZE 4
 #define OBJECT_BLOCK_SIZE  (BLOCK_SIZE - BLOCK_META_SIZE - OBJECT_BLOCK_HEADER_SIZE)
 
     class ObjectBlock{
@@ -32,18 +32,14 @@ namespace riverrain{
     public: 
     ObjectBlock(){};
     ~ObjectBlock(){};
-    auto ContentAt(int index) const -> std::pair<char *, int>;
-    auto GetRemainingSize() const -> int;
+    auto ContentAt(int index) const -> std::pair<const char *, size_t>;
+    auto GetRemainingSize() const -> size_t;
     auto Initial(){
             
     }
-    // private:
-         int object_nums_;
-         // I use "this" which points the start address of the object block, plus the size of the object block to get 
-         // the end address
-         int offset_map_[0];
-         
-         
+    private:
+         size_t object_nums_;
+         size_t offset_map_[0];
          
     };
 }

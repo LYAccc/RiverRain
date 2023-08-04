@@ -35,12 +35,14 @@ int main(){
         MemoryManager bf(3 * BLOCK_SIZE, &dm);
         
         
-        void * raw = malloc(16);
+        void * raw = malloc(1000);
         ObjectBlock * r = reinterpret_cast<ObjectBlock *> (raw);
-        r->Initial();
+        
+        char a [] = {'1','2'};
+        const char * p = &a[0];
 
-        std::cout << (void *) r << std::endl;
-        std::cout << (void *)(r->ptr_end) << std::endl;
+        std::cout << (p[1]) << std::endl;
+
         ;
         
 
