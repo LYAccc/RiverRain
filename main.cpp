@@ -4,6 +4,7 @@
 #include "memory_manager.h"
 #include "object_block.h"
 #include <iostream>
+#include <unordered_set>
     // disk_manager test
     // int main(){
         
@@ -32,16 +33,16 @@ using namespace riverrain;
 int main(){
         DiskManager dm("test.txt");
         
-        MemoryManager bf(3 * BLOCK_SIZE, &dm);
+        MemoryManager bf(3 * RAW_BLOCK_SIZE, &dm);
         
         
         void * raw = malloc(1000);
         ObjectBlock * r = reinterpret_cast<ObjectBlock *> (raw);
         
-        char a [] = {'1','2'};
-        const char * p = &a[0];
+        std::string s = "abc";
+        
 
-        std::cout << (p[1]) << std::endl;
+        std::cout << s.data()[0];
 
         ;
         

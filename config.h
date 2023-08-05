@@ -10,8 +10,7 @@ namespace riverrain{
     static constexpr int DISK_SIZE = RAW_BLOCK_SIZE * 100;
     static constexpr int MEMORY_POOL_SIZE = RAW_BLOCK_SIZE * 5;
     
-    static constexpr int BLOCK_HEADER_SIZE  = 12;
-
+    
     using block_id_t = int;
     using frame_id_t = int;
     using slot_id_t = int;

@@ -54,8 +54,9 @@ namespace riverrain{
                                 block_table_[b_id] = avaliable_frame;
                                 this->disk_manager_->ReadBlockFromDisk(b_id, reinterpret_cast<char *> (&blocks_[avaliable_frame]));
                                 
-                                
-                                return &blocks_[avaliable_frame];
+                                auto & rb = blocks_[avaliable_frame];
+                                rb.pin_count_++;
+                                return &rb;
                         }
 
                         (*replacer_).Evict(&avaliable_frame);
@@ -67,7 +68,9 @@ namespace riverrain{
                         
                         this->disk_manager_->ReadBlockFromDisk(b_id, reinterpret_cast<char *> (&blocks_[avaliable_frame]));
                         
-                        return &blocks_[avaliable_frame];
+                        auto & rb = blocks_[avaliable_frame];
+                        rb.pin_count_++;
+                        return &rb;
 
 
                         

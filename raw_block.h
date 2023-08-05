@@ -10,6 +10,9 @@ namespace riverrain{
     public:
     RawBlock(){};
     ~RawBlock(){};
+    auto GetData() -> char *{
+        return data_;
+    }
    
     private:
          int pin_count_ = 0;
