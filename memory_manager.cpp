@@ -48,9 +48,8 @@ namespace riverrain{
                         }
                         frame_id_t avaliable_frame;
                         if(!this->free_list_.empty()){
-                                auto ite_fl = free_list_.end();
-                                avaliable_frame = *ite_fl;
-                                free_list_.erase(ite_fl);
+                                avaliable_frame = free_list_.back();
+                                free_list_.pop_back();
                                 block_table_[b_id] = avaliable_frame;
                                 this->disk_manager_->ReadBlockFromDisk(b_id, reinterpret_cast<char *> (&blocks_[avaliable_frame]));
                                 

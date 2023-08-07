@@ -19,16 +19,17 @@ namespace riverrain{
                RawBlock *blocks_;
                auto FetchBlock(block_id_t b_id) -> RawBlock *;
                auto FlushBlock(block_id_t b_id) -> bool; 
+               auto AllocateBlock(block_id_t b_id) -> bool;
                private:
                 
-                std::unordered_map<block_id_t, frame_id_t> block_table_;
-                std::list<frame_id_t> free_list_;
-                const size_t mem_pool_size_;
-                DiskManager *disk_manager_;
-                std::mutex latch_;
-                std::unique_ptr<LRUKReplacer> replacer_;
-                // this is for memory alignment req for direc io
-                RawBlock* allocate(size_t pz);
+                    std::unordered_map<block_id_t, frame_id_t> block_table_;
+                    std::list<frame_id_t> free_list_;
+                    const size_t mem_pool_size_;
+                    DiskManager *disk_manager_;
+                    std::mutex latch_;
+                    std::unique_ptr<LRUKReplacer> replacer_;
+                    // this is for memory alignment req for direc io
+                    RawBlock* allocate(size_t pz);
 
 
     };
